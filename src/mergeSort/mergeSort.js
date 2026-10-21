@@ -31,7 +31,7 @@ export function mergeSort(arr) {
 
   if (low < high) {
     const left = mergeSort(arr.slice(0, mid));
-    const right = mergeSort(arr.slice(mid)); 
+    const right = mergeSort(arr.slice(mid));
     return merge(left, right);
   } else {
     return arr;
