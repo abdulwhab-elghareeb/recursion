@@ -1,27 +1,21 @@
 export function fibs(fibsLength) {
+  if (fibsLength === 1) return [0];
+  if (fibsLength === 2) return [0, 1];
+
   const baseArr = [0, 1];
 
-  if (fibsLength === 1) return [0];
-
   while (baseArr.length !== fibsLength) {
-    const last = baseArr.at(baseArr.length - 1);
-    const beforeLast = baseArr.at(baseArr.length - 2);
-
-    baseArr.push(last + beforeLast);
+    baseArr.push(baseArr.at(-1) + baseArr.at(-2));
   }
-
+  
   return baseArr;
-}
-
-function fibsNumAt(n) {
-  if (n <= 2) return n - 1;
-  return fibsNumAt(n - 1) + fibsNumAt(n - 2);
 }
 
 export function fibsRec(fibsLength) {
   if (fibsLength === 1) return [0];
+  if (fibsLength === 2) return [0, 1];
 
-  let arr = [];
-  arr.push(fibsNumAt(fibsLength));
-  return arr.concat(fibsRec(fibsLength - 1)).sort((a, b) => a - b);
+  const prev = fibsRec(fibsLength - 1);
+  prev.push(prev.at(-1) + prev.at(-2));
+  return prev;
 }
